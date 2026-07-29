@@ -136,7 +136,7 @@ class FontAwesome {
 	 *
 	 * @since 4.0.0
 	 */
-	public const PLUGIN_VERSION = '5.2.0';
+	public const PLUGIN_VERSION = '5.2.1';
 	/**
 	 * The namespace for this plugin's REST API.
 	 *
@@ -434,11 +434,6 @@ class FontAwesome {
 			}
 
 			$this->maybe_enqueue_admin_assets();
-
-			// Setup JavaScript internationalization if we're on WordPress 5.0+.
-			if ( function_exists( 'wp_set_script_translations' ) ) {
-				wp_set_script_translations( self::ADMIN_RESOURCE_HANDLE, 'font-awesome' );
-			}
 
 			if ( $this->using_kit() ) {
 				if ( $this->skip_enqueue_kit() ) {
@@ -1703,6 +1698,14 @@ class FontAwesome {
 				try {
 					if ( $this->detecting_conflicts() || $hook === $this->screen_id || $should_enable_icon_chooser ) {
 						$this->enqueue_admin_js_assets( $should_enable_icon_chooser );
+
+						// Setup JavaScript internationalization if we're on WordPress 5.0+.
+						// This must happen after the admin script is registered/enqueued
+						// (in enqueue_admin_js_assets), so that the textdomain is
+						// associated with the script object before it is printed.
+						if ( function_exists( 'wp_set_script_translations' ) ) {
+							wp_set_script_translations( self::ADMIN_RESOURCE_HANDLE, 'font-awesome' );
+						}
 					}
 
 					if ( $hook === $this->screen_id ) {

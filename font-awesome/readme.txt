@@ -1,6 +1,6 @@
 === Font Awesome ===
 Contributors: fontawesome, mlwilkerson, robmadole, frrrances, deathnfudge
-Stable tag: 5.2.0
+Stable tag: 5.2.1
 Tags: FontAwesome, icon, svg icon, iconfont, webfont
 Requires at least: 5.8
 Tested up to: 7.0
@@ -196,6 +196,11 @@ If you're using the Icon Chooser, you'll need to use a Pro Kit. (The CDN can onl
 
 
 == Changelog ==
+= 5.2.1 =
+
+* Fix the registration of script translations to enable non-English languages to work
+correctly in the plugin's admin interface.
+
 = 5.2.0 =
 
 * Update the icon chooser to be Kit subset aware. Only icons included in a Kit's subset will be available for search and selection. If it surprises you to see fewer icons available in the Icon Chooser, the solution is to add more icons to your Kit's subset on fontawesome.com. You could even use a Full Library kit to include them all.
